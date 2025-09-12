@@ -13,11 +13,11 @@ A full-stack subscription demo:
 
 ## Project Structure
 `
-backend/                 # Django project (API + YouTube proxy)
+backend/ # Django project (API + YouTube proxy)
   backend/
   subscriptions/
-frontend/                # React + Vite app
-subscription-contract/   # Hardhat project (contract)
+frontend/ # React + Vite app
+subscription-contract/ # Hardhat project (contract)
 `
 
 ## Quick Start
