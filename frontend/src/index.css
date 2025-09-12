@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Web3 Subscription Platform Design System */
+
+@layer base {
+  :root {
+    /* Web3 Light Theme */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 263 70% 50%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 240 4.8% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 5.9% 10%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 240 4.8% 15.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5.9% 20%;
+    --input: 240 5.9% 20%;
+    --ring: 263 70% 50%;
+
+    --radius: 0.75rem;
+
+    /* Web3 Specific Colors */
+    --neon-cyan: 180 100% 50%;
+    --neon-purple: 263 70% 50%;
+    --neon-pink: 320 100% 50%;
+    --neon-green: 120 100% 50%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(263 70% 50%) 0%, hsl(280 100% 70%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(180 100% 50%) 0%, hsl(263 70% 50%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(240 5.9% 10%) 0%, hsl(240 4.8% 15.9%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(263 70% 50% / 0.1) 0%, hsl(180 100% 50% / 0.1) 100%);
+
+    /* Shadows */
+    --shadow-glow: 0 0 40px hsl(263 70% 50% / 0.3);
+    --shadow-card: 0 8px 32px hsl(240 5.9% 10% / 0.4);
+    --shadow-neon: 0 0 20px hsl(180 100% 50% / 0.5);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 240 10% 3.9%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 263 70% 50%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 15.9%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 240 5.9% 20%;
+    --sidebar-ring: 263 70% 50%;
+  }
+
+  .light {
+    --background: 210 20% 98%;
+    --foreground: 222 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 84% 4.9%;
+    --primary: 263 70% 50%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 215 25% 27%;
+    --muted: 210 40% 98%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 215 25% 27%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 263 70% 50%;
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(210 40% 98%) 100%);
+    --shadow-card: 0 8px 32px hsl(222 84% 4.9% / 0.1);
+    
+    /* Light mode Web3 colors - softer but still vibrant */
+    --neon-cyan: 180 90% 45%;
+    --neon-purple: 263 60% 55%;
+    --neon-pink: 320 90% 50%;
+    --neon-green: 120 80% 45%;
+    
+    /* Light mode gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(263 60% 55%) 0%, hsl(280 80% 60%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(180 90% 45%) 0%, hsl(263 60% 55%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(263 60% 55% / 0.08) 0%, hsl(180 90% 45% / 0.08) 100%);
+    
+    /* Light mode shadows */
+    --shadow-glow: 0 0 40px hsl(263 60% 55% / 0.2);
+    --shadow-neon: 0 0 20px hsl(180 90% 45% / 0.3);
+    
+    /* Light mode sidebar */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 84% 4.9%;
+    --sidebar-primary: 263 70% 50%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 215 25% 27%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 263 70% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  }
+
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.8);
+  }
+}
+
+@layer components {
+  /* Web3 Button Variants */
+  .btn-gradient {
+    @apply bg-gradient-to-r from-primary to-neon-cyan text-primary-foreground font-semibold px-6 py-3 rounded-lg;
+    @apply hover:scale-105 transform transition-all duration-300;
+    @apply shadow-lg hover:shadow-glow;
+  }
+
+  .btn-neon {
+    @apply border-2 border-neon-cyan text-neon-cyan bg-transparent font-semibold px-6 py-3 rounded-lg;
+    @apply hover:bg-neon-cyan hover:text-background hover:shadow-neon transform transition-all duration-300;
+  }
+
+  /* Card Variants */
+  .card-gradient {
+    @apply bg-gradient-to-br from-card via-muted to-accent;
+    @apply border border-border rounded-xl p-6;
+    @apply backdrop-blur-sm shadow-card;
+  }
+
+  .card-neon {
+    @apply bg-card border border-neon-cyan/20 rounded-xl p-6;
+    @apply hover:border-neon-cyan/40 hover:shadow-neon transform transition-all duration-300;
+    @apply backdrop-blur-sm;
+  }
+
+  /* Hero Section */
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+
+  /* Animations */
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.5);
+    }
+    to {
+      box-shadow: 0 0 30px hsl(var(--neon-cyan) / 0.8), 0 0 40px hsl(var(--neon-purple) / 0.3);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Utility Classes */
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--neon-cyan)), hsl(var(--neon-purple)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .border-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(var(--background), var(--background)) padding-box,
+                linear-gradient(135deg, hsl(var(--neon-cyan)), hsl(var(--neon-purple))) border-box;
+  }
+}
