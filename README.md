@@ -1,4 +1,4 @@
-﻿# DSAPP – Subscription Video DApp (Django + React/Vite + Ethers)
+# DSAPP – Subscription Video DApp (Django + React/Vite + Ethers)
 
 A full-stack subscription demo:
 - Backend: Django REST API + server-side YouTube Data API proxy
