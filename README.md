@@ -53,7 +53,7 @@ YOUTUBE_API_KEY=YOUR_BACKEND_YT_API_KEY
 ..\venv\Scripts\python.exe manage.py runserver 8000
 API Base: http://localhost:8000
 
-YouTube Proxy: GET /api/youtube/search?q=songs
+YouTube Proxy: GET /api/youtube/search?q=songs ```
 
 ###2️⃣ Frontend Setup
 Create frontend/.env.local (or .env):
