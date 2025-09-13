@@ -247,7 +247,13 @@ export default function Watch() {
                     <div className="w-full h-full" />
                   )}
                 </div>
-                <div className="font-medium leading-tight line-clamp-2">{v.title}</div>
+                <div className="font-medium leading-tight overflow-hidden" style={{
+                  display: '-webkit-box',
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: 'vertical',
+                  lineHeight: '1.4',
+                  maxHeight: '2.8em'
+                }}>{v.title}</div>
                 <div className="text-xs text-muted-foreground mt-1">{v.channel}</div>
               </Card>
             ))}

@@ -428,14 +428,22 @@ class PaymentService {
     active: boolean;
   } | null> {
     try {
+      // Check if contract is configured first
+      if (!this.isContractConfigured()) {
+        console.warn('Contract not configured, skipping chain plan fetch');
+        return null;
+      }
+
       const contract = await this.getContract();
       const exists: boolean = await contract.planExists(planId);
       if (!exists) return null;
+      
       const p = await contract.plans(planId);
       const token: string = p.token;
       const priceWei: bigint = p.price as bigint;
       const durationSec: bigint = p.duration as bigint;
       const active: boolean = p.active as boolean;
+      
       return {
         token,
         priceWei,
@@ -443,7 +451,8 @@ class PaymentService {
         durationSec,
         active,
       };
-    } catch (_) {
+    } catch (error) {
+      console.warn('Failed to fetch plan from chain:', error);
       return null;
     }
   }

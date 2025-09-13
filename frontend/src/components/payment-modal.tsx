@@ -21,6 +21,7 @@ import {
 import { Plan } from '../stores/useSubscriptionStore';
 import { paymentService } from '../services/paymentService';
 import { getTxUrl } from '../config/contracts';
+import ElectricBorder from '../components/ElectricBorder';
 
 interface PaymentModalProps {
   isOpen: boolean;
@@ -229,24 +230,28 @@ export const PaymentModal = ({ isOpen, onClose, plan, onSuccess }: PaymentModalP
                   >
                     Cancel
                   </Button>
-                  <Button
-                    onClick={handlePayment}
-                    disabled={isProcessing}
-                    className="flex-1 btn-gradient"
-                  >
-                    <Wallet className="h-4 w-4 mr-2" />
-                    Pay {plan.price} {plan.currency}
-                  </Button>
+                  <ElectricBorder style={{ borderRadius: 8 }}>
+                    <Button
+                      onClick={handlePayment}
+                      disabled={isProcessing}
+                      className="flex-1 btn-gradient"
+                    >
+                      <Wallet className="h-4 w-4 mr-2" />
+                      Pay {plan.price} {plan.currency}
+                    </Button>
+                  </ElectricBorder>
                 </>
               )}
               
               {step === 'success' && (
-                <Button
-                  onClick={handleClose}
-                  className="flex-1 btn-gradient"
-                >
-                  Continue
-                </Button>
+                <ElectricBorder style={{ borderRadius: 8 }}>
+                  <Button
+                    onClick={handleClose}
+                    className="flex-1 btn-gradient"
+                  >
+                    Continue
+                  </Button>
+                </ElectricBorder>
               )}
               
               {step === 'error' && (
@@ -258,12 +263,14 @@ export const PaymentModal = ({ isOpen, onClose, plan, onSuccess }: PaymentModalP
                   >
                     Close
                   </Button>
-                  <Button
-                    onClick={() => setStep('confirm')}
-                    className="flex-1 btn-gradient"
-                  >
-                    Try Again
-                  </Button>
+                  <ElectricBorder style={{ borderRadius: 8 }}>
+                    <Button
+                      onClick={() => setStep('confirm')}
+                      className="flex-1 btn-gradient"
+                    >
+                      Try Again
+                    </Button>
+                  </ElectricBorder>
                 </>
               )}
             </div>

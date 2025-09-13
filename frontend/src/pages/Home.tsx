@@ -6,6 +6,7 @@ import { Card } from '../components/ui/card';
 import heroBackground from '../assets/hero-bg.jpg';
 import { useEffect, useState } from 'react';
 import { fetchStats } from '../lib/api';
+import ElectricBorder from '../components/ElectricBorder';
 
 const features = [
   {
@@ -101,20 +102,24 @@ export default function Home() {
               transition={{ delay: 0.6, duration: 0.8 }}
             >
               <Link to="/plans">
-                <Button size="lg" className="btn-gradient text-lg px-8 py-4">
-                  Explore Plans
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
+                <ElectricBorder style={{ borderRadius: 8 }}>
+                  <Button size="lg" className="btn-gradient text-lg px-8 py-4">
+                    Explore Plans
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </ElectricBorder>
               </Link>
               
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-neon-cyan/30 hover:border-neon-cyan/50 text-lg px-8 py-4"
-                onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                Learn More
-              </Button>
+              <ElectricBorder style={{ borderRadius: 8 }}>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-neon-cyan/30 hover:border-neon-cyan/50 text-lg px-8 py-4"
+                  onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  Learn More
+                </Button>
+              </ElectricBorder>
             </motion.div>
           </motion.div>
         </div>
@@ -189,13 +194,15 @@ export default function Home() {
                 viewport={{ once: true }}
                 whileHover={{ y: -8 }}
               >
-                <Card className="card-gradient p-6 h-full text-center">
-                  <div className="mb-4 inline-flex p-3 rounded-xl bg-gradient-primary">
-                    <feature.icon className="h-6 w-6 text-white" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                  <p className="text-muted-foreground">{feature.description}</p>
-                </Card>
+                <ElectricBorder style={{ borderRadius: 16 }} className="h-full">
+                  <Card className="card-gradient p-6 h-full text-center flex flex-col">
+                    <div className="mb-4 inline-flex p-3 rounded-xl bg-gradient-primary flex-shrink-0">
+                      <feature.icon className="h-6 w-6 text-white" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-3 flex-shrink-0">{feature.title}</h3>
+                    <p className="text-muted-foreground flex-grow">{feature.description}</p>
+                  </Card>
+                </ElectricBorder>
               </motion.div>
             ))}
           </div>
