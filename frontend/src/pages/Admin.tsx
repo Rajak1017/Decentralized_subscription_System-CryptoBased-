@@ -36,6 +36,7 @@ import { useNotificationStore } from '../stores/useNotificationStore';
 import { createPlan as apiCreatePlan, updatePlan as apiUpdatePlan, fetchStats } from '../lib/api';
 import { paymentService } from '../services/paymentService';
 import { useWalletStore } from '../stores/useWalletStore';
+import ElectricBorder from '../components/ElectricBorder';
 
 interface PlanFormData {
   name: string;
@@ -404,10 +405,12 @@ export default function Admin() {
 
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
-              <Button className="btn-gradient mt-4 md:mt-0" onClick={() => { resetForm(); setIsDialogOpen(true); }}>
-                <Plus className="h-4 w-4 mr-2" />
-                Create Plan
-              </Button>
+              <ElectricBorder style={{ borderRadius: 8 }}>
+                <Button className="btn-gradient mt-4 md:mt-0" onClick={() => { resetForm(); setIsDialogOpen(true); }}>
+                  <Plus className="h-4 w-4 mr-2" />
+                  Create Plan
+                </Button>
+              </ElectricBorder>
             </DialogTrigger>
             
             <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
@@ -537,9 +540,11 @@ export default function Admin() {
                   >
                     Cancel
                   </Button>
-                  <Button type="submit" className="btn-gradient">
-                    {editingPlan ? 'Update Plan' : 'Create Plan'}
-                  </Button>
+                  <ElectricBorder style={{ borderRadius: 8 }}>
+                    <Button type="submit" className="btn-gradient">
+                      {editingPlan ? 'Update Plan' : 'Create Plan'}
+                    </Button>
+                  </ElectricBorder>
                 </div>
               </form>
             </DialogContent>
@@ -553,53 +558,61 @@ export default function Admin() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
         >
-          <Card className="card-gradient p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-muted-foreground text-sm">Total Revenue</p>
-                <p className="text-2xl font-bold text-neon-green">
-                  {formatUSD(totalRevenueUsd)}
-                </p>
+          <ElectricBorder style={{ borderRadius: 16 }}>
+            <Card className="card-gradient p-6 h-full">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-muted-foreground text-sm">Total Revenue</p>
+                  <p className="text-2xl font-bold text-neon-green">
+                    {formatUSD(totalRevenueUsd)}
+                  </p>
+                </div>
+                <DollarSign className="h-8 w-8 text-neon-green" />
               </div>
-              <DollarSign className="h-8 w-8 text-neon-green" />
-            </div>
-          </Card>
+            </Card>
+          </ElectricBorder>
 
-          <Card className="card-gradient p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-muted-foreground text-sm">Active Subscriptions (site-wide)</p>
-                <p className="text-2xl font-bold text-neon-cyan">
-                  {siteStats?.activeSubscriptions ?? 0}
-                </p>
+          <ElectricBorder style={{ borderRadius: 16 }}>
+            <Card className="card-gradient p-6 h-full">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-muted-foreground text-sm">Active Subscriptions (site-wide)</p>
+                  <p className="text-2xl font-bold text-neon-cyan">
+                    {siteStats?.activeSubscriptions ?? 0}
+                  </p>
+                </div>
+                <Users className="h-8 w-8 text-neon-cyan" />
               </div>
-              <Users className="h-8 w-8 text-neon-cyan" />
-            </div>
-          </Card>
+            </Card>
+          </ElectricBorder>
 
-          <Card className="card-gradient p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-muted-foreground text-sm">Total Plans</p>
-                <p className="text-2xl font-bold text-neon-purple">
-                  {totalPlans}
-                </p>
+          <ElectricBorder style={{ borderRadius: 16 }}>
+            <Card className="card-gradient p-6 h-full">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-muted-foreground text-sm">Total Plans</p>
+                  <p className="text-2xl font-bold text-neon-purple">
+                    {totalPlans}
+                  </p>
+                </div>
+                <Settings className="h-8 w-8 text-neon-purple" />
               </div>
-              <Settings className="h-8 w-8 text-neon-purple" />
-            </div>
-          </Card>
+            </Card>
+          </ElectricBorder>
 
-          <Card className="card-gradient p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-muted-foreground text-sm">Active Plans</p>
-                <p className="text-2xl font-bold text-neon-pink">
-                  {activePlans}
-                </p>
+          <ElectricBorder style={{ borderRadius: 16 }}>
+            <Card className="card-gradient p-6 h-full">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-muted-foreground text-sm">Active Plans</p>
+                  <p className="text-2xl font-bold text-neon-pink">
+                    {activePlans}
+                  </p>
+                </div>
+                <TrendingUp className="h-8 w-8 text-neon-pink" />
               </div>
-              <TrendingUp className="h-8 w-8 text-neon-pink" />
-            </div>
-          </Card>
+            </Card>
+          </ElectricBorder>
         </motion.div>
 
         {/* Treasury Settings */}
@@ -608,29 +621,33 @@ export default function Admin() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
         >
-          <Card className="card-gradient p-6 mb-8">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-semibold">Treasury Settings</h2>
-              <Badge variant="outline" className="border-neon-cyan/30 text-neon-cyan">Owner-only</Badge>
-            </div>
+          <ElectricBorder style={{ borderRadius: 16 }} className="mb-8">
+            <Card className="card-gradient p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xl font-semibold">Treasury Settings</h2>
+                <Badge variant="outline" className="border-neon-cyan/30 text-neon-cyan">Owner-only</Badge>
+              </div>
 
-            <div className="grid md:grid-cols-3 gap-4 items-end">
-              <div className="md:col-span-2">
-                <Label htmlFor="treasury">Treasury Address</Label>
-                <TextInput
-                  id="treasury"
-                  value={treasury}
-                  onChange={(e) => setTreasury(e.target.value)}
-                  placeholder="0x..."
-                />
+              <div className="grid md:grid-cols-3 gap-4 items-end">
+                <div className="md:col-span-2">
+                  <Label htmlFor="treasury">Treasury Address</Label>
+                  <TextInput
+                    id="treasury"
+                    value={treasury}
+                    onChange={(e) => setTreasury(e.target.value)}
+                    placeholder="0x..."
+                  />
+                </div>
+                <div>
+                  <ElectricBorder style={{ borderRadius: 8 }}>
+                    <Button onClick={handleTreasuryUpdate} disabled={isUpdatingTreasury} className="w-full btn-gradient">
+                      {isUpdatingTreasury ? 'Updating...' : 'Update Treasury'}
+                    </Button>
+                  </ElectricBorder>
+                </div>
               </div>
-              <div>
-                <Button onClick={handleTreasuryUpdate} disabled={isUpdatingTreasury} className="w-full btn-gradient">
-                  {isUpdatingTreasury ? 'Updating...' : 'Update Treasury'}
-                </Button>
-              </div>
-            </div>
-          </Card>
+            </Card>
+          </ElectricBorder>
         </motion.div>
 
         {/* Plans Table */}
@@ -639,97 +656,101 @@ export default function Admin() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
         >
-          <Card className="card-gradient p-6">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl font-semibold">Subscription Plans</h2>
-              <div className="flex items-center gap-2">
-                <Badge variant="outline" className="border-neon-cyan/30 text-neon-cyan">
-                  {plans.length} Total Plans
-                </Badge>
-                {ownerAddress && (
-                  <Badge variant="outline" className="border-neon-purple/30 text-neon-purple">
-                    Owner: {ownerAddress.substring(0, 6)}...{ownerAddress.substring(ownerAddress.length - 4)}
+          <ElectricBorder style={{ borderRadius: 16 }}>
+            <Card className="card-gradient p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-semibold">Subscription Plans</h2>
+                <div className="flex items-center gap-2">
+                  <Badge variant="outline" className="border-neon-cyan/30 text-neon-cyan">
+                    {plans.length} Total Plans
                   </Badge>
-                )}
+                  {ownerAddress && (
+                    <Badge variant="outline" className="border-neon-purple/30 text-neon-purple">
+                      Owner: {ownerAddress.substring(0, 6)}...{ownerAddress.substring(ownerAddress.length - 4)}
+                    </Badge>
+                  )}
+                </div>
               </div>
-            </div>
 
-            <div className="overflow-x-auto">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Plan</TableHead>
-                    <TableHead>Price</TableHead>
-                    <TableHead>Duration</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Actions</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {plans.map((plan) => (
-                    <motion.tr
-                      key={plan.id}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <TableCell>
-                        <div>
-                          <div className="font-medium">{plan.name}</div>
-                          <div className="text-sm text-muted-foreground">
-                            {plan.description}
+              <div className="overflow-x-auto">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Plan</TableHead>
+                      <TableHead>Price</TableHead>
+                      <TableHead>Duration</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead>Actions</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {plans.map((plan) => (
+                      <motion.tr
+                        key={plan.id}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <TableCell>
+                          <div>
+                            <div className="font-medium">{plan.name}</div>
+                            <div className="text-sm text-muted-foreground">
+                              {plan.description}
+                            </div>
                           </div>
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div className="font-medium">
-                          {(planOnChainPrice[plan.id] ?? plan.price)} {plan.currency}
-                          {planOnChain[plan.id] && planOnChainPrice[plan.id] && planOnChainPrice[plan.id] !== plan.price && (
-                            <span className="ml-2 text-xs text-muted-foreground">(on-chain)</span>
-                          )}
-                        </div>
-                      </TableCell>
-                      <TableCell>{plan.duration} days</TableCell>
-                      <TableCell>
-                        <div className="flex items-center space-x-2">
-                          <Switch
-                            checked={plan.isActive}
-                            onCheckedChange={() => togglePlanStatus(plan.id, plan.isActive)}
-                          />
-                          <Badge
-                            variant={plan.isActive ? 'default' : 'secondary'}
-                            className={plan.isActive ? 'bg-neon-green/20 text-neon-green' : ''}
-                          >
-                            {plan.isActive ? 'Active' : 'Inactive'}
-                          </Badge>
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div className="flex space-x-2">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleEditPlan(plan)}
-                          >
-                            <Edit3 className="h-4 w-4" />
-                          </Button>
-                          {isOwner && (
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={() => publishPlanOnChain(plan)}
+                        </TableCell>
+                        <TableCell>
+                          <div className="font-medium">
+                            {(planOnChainPrice[plan.id] ?? plan.price)} {plan.currency}
+                            {planOnChain[plan.id] && planOnChainPrice[plan.id] && planOnChainPrice[plan.id] !== plan.price && (
+                              <span className="ml-2 text-xs text-muted-foreground">(on-chain)</span>
+                            )}
+                          </div>
+                        </TableCell>
+                        <TableCell>{plan.duration} days</TableCell>
+                        <TableCell>
+                          <div className="flex items-center space-x-2">
+                            <Switch
+                              checked={plan.isActive}
+                              onCheckedChange={() => togglePlanStatus(plan.id, plan.isActive)}
+                            />
+                            <Badge
+                              variant={plan.isActive ? 'default' : 'secondary'}
+                              className={plan.isActive ? 'bg-neon-green/20 text-neon-green' : ''}
                             >
-                              {planOnChain[plan.id] ? 'Update' : 'Publish'}
+                              {plan.isActive ? 'Active' : 'Inactive'}
+                            </Badge>
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <div className="flex space-x-2">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => handleEditPlan(plan)}
+                            >
+                              <Edit3 className="h-4 w-4" />
                             </Button>
-                          )}
-                        </div>
-                      </TableCell>
-                    </motion.tr>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
-          </Card>
+                            {isOwner && (
+                              <ElectricBorder style={{ borderRadius: 8 }}>
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => publishPlanOnChain(plan)}
+                                >
+                                  {planOnChain[plan.id] ? 'Update' : 'Publish'}
+                                </Button>
+                              </ElectricBorder>
+                            )}
+                          </div>
+                        </TableCell>
+                      </motion.tr>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            </Card>
+          </ElectricBorder>
         </motion.div>
       </div>
     </div>

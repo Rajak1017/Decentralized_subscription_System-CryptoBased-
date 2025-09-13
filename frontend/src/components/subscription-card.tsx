@@ -7,6 +7,7 @@ import { UserSubscription } from '../stores/useSubscriptionStore';
 import { cancelSubscription } from '../utils/contract';
 import { useEffect, useState } from 'react';
 import { paymentService } from '../services/paymentService';
+import ElectricBorder from './ElectricBorder';
 
 interface SubscriptionCardProps {
   subscription: UserSubscription;
@@ -130,43 +131,49 @@ export const SubscriptionCard = ({ subscription }: SubscriptionCardProps) => {
             
             <div className="flex space-x-2">
               {subscription.status === 'active' && !isExpired && (
+                <ElectricBorder style={{ borderRadius: 8 }}>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="h-8 px-3 text-xs border-neon-green/30 hover:border-neon-green/50 hover:bg-neon-green/10 text-neon-green"
+                    onClick={() => {
+                      window.location.href = `/watch/${subscription.planId}`;
+                    }}
+                  >
+                    <Play className="h-3 w-3 mr-1" />
+                    Watch
+                  </Button>
+                </ElectricBorder>
+              )}
+              <ElectricBorder style={{ borderRadius: 8 }}>
                 <Button
                   variant="outline"
                   size="sm"
-                  className="h-8 px-3 text-xs border-neon-green/30 hover:border-neon-green/50 hover:bg-neon-green/10 text-neon-green"
+                  className="h-8 px-3 text-xs border-neon-cyan/20 hover:border-neon-cyan/40 hover:bg-neon-cyan/10"
                   onClick={() => {
-                    window.location.href = `/watch/${subscription.planId}`;
+                    const chainId = Number(import.meta.env.VITE_CHAIN_ID || '11155111');
+                    const base = chainId === 11155111 ? 'https://sepolia.etherscan.io' : (chainId === 137 ? 'https://polygonscan.com' : 'https://etherscan.io');
+                    window.open(`${base}/tx/${subscription.txHash}`, '_blank');
                   }}
                 >
-                  <Play className="h-3 w-3 mr-1" />
-                  Watch
+                  <ExternalLink className="h-3 w-3 mr-1" />
+                  View
                 </Button>
-              )}
-              <Button
-                variant="outline"
-                size="sm"
-                className="h-8 px-3 text-xs border-neon-cyan/20 hover:border-neon-cyan/40 hover:bg-neon-cyan/10"
-                onClick={() => {
-                  const chainId = Number(import.meta.env.VITE_CHAIN_ID || '11155111');
-                  const base = chainId === 11155111 ? 'https://sepolia.etherscan.io' : (chainId === 137 ? 'https://polygonscan.com' : 'https://etherscan.io');
-                  window.open(`${base}/tx/${subscription.txHash}`, '_blank');
-                }}
-              >
-                <ExternalLink className="h-3 w-3 mr-1" />
-                View
-              </Button>
+              </ElectricBorder>
               
               {subscription.status === 'active' && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="h-8 px-3 text-xs border-destructive/20 hover:border-destructive/40 hover:bg-destructive/10 text-destructive"
-                  onClick={handleCancel}
-                  disabled={isCancelling}
-                >
-                  <X className="h-3 w-3 mr-1" />
-                  {isCancelling ? 'Cancelling...' : 'Cancel'}
-                </Button>
+                <ElectricBorder style={{ borderRadius: 8 }}>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="h-8 px-3 text-xs border-destructive/20 hover:border-destructive/40 hover:bg-destructive/10 text-destructive"
+                    onClick={handleCancel}
+                    disabled={isCancelling}
+                  >
+                    <X className="h-3 w-3 mr-1" />
+                    {isCancelling ? 'Cancelling...' : 'Cancel'}
+                  </Button>
+                </ElectricBorder>
               )}
             </div>
           </div>
